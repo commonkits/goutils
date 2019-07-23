@@ -1,3 +1,3 @@
-module github/commonkits/goutils
+module github.com/commonkits/goutils
 
 go 1.12
