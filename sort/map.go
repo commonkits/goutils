@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func SortMapString(tags map[string]string) string {
+func SortedMapString(tags map[string]string) string {
 	if tags == nil {
 		return ""
 	}
