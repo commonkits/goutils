@@ -2,9 +2,9 @@ package es
 
 import (
 	"context"
+	"errors"
 
 	"github.com/olivere/elastic"
-	"github.com/pkg/errors"
 )
 
 type EsHelper struct {
