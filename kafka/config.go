@@ -25,5 +25,9 @@ func DefaultSuccessFunc() func(msg *sarama.ProducerMessage) {
 }
 
 func DefaultErrorFunc() func(fail *sarama.ProducerError) {
-	return func(fail *sarama.ProducerError) { fmt.Println("ERROR kafka send err: ", fail.Err) }
+	return func(fail *sarama.ProducerError) {
+		if fail != nil {
+			fmt.Println("ERROR kafka send err: ", fail.Err)
+		}
+	}
 }
