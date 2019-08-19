@@ -45,10 +45,19 @@ func (producer *KafkaAsyncProducer) Close() {
 	producer.AsyncClose()
 }
 
+var (
+	asyncProducer *KafkaAsyncProducer
+	isInit        bool
+)
+
 func InitKafkaAsyncProducer(config *sarama.Config,
 	brokers []string,
 	sucFuc func(msg *sarama.ProducerMessage),
 	errFunc func(fail *sarama.ProducerError)) (*KafkaAsyncProducer, error) {
+
+	if isInit {
+		return asyncProducer, nil
+	}
 	if len(brokers) == 0 {
 		return nil, errors.New("kafka brokers is empty")
 	}
@@ -72,5 +81,17 @@ func InitKafkaAsyncProducer(config *sarama.Config,
 	p := KafkaAsyncProducer{
 		producer,
 	}
+
+	asyncProducer = &p
+	isInit = true
+
 	return &p, nil
+}
+
+func GetAsyncProducer() *KafkaAsyncProducer {
+	return asyncProducer
+}
+
+func Reset() {
+	isInit = false
 }
