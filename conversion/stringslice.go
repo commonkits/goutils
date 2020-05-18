@@ -5,7 +5,7 @@ import (
 	"unsafe"
 )
 
-func String2Slice(s string) (b []byte) {
+func String2Bytes(s string) (b []byte) {
 	pbytes := (*reflect.SliceHeader)(unsafe.Pointer(&b))
 	pstring := (*reflect.StringHeader)(unsafe.Pointer(&s))
 	pbytes.Data = pstring.Data
